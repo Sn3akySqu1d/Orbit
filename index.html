@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORBIT</title>
+    <title>Orbit</title>
     <meta name="description" content="">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>🪐</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +51,7 @@
         }
 
         .home-tagline {
-            font-size: 16px;
+            font-size: 18px;
             line-height: 1.7;
             color: #b0b0b8;
             margin: 0 0 32px;
@@ -68,7 +68,7 @@
         .btn-main {
             padding: 10px 24px;
             font-family: var(--font);
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             color: #000;
             background: #fff;
@@ -83,7 +83,7 @@
         .btn-second {
             padding: 10px 24px;
             font-family: var(--font);
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
             color: #ccc;
             background: none;
@@ -98,7 +98,7 @@
         }
 
         .home-wrap p {
-            font-size: 15px;
+            font-size: 17px;
             line-height: 1.75;
             color: #909098;
             margin: 0 0 16px;
@@ -111,7 +111,7 @@
         }
 
         .home-wrap h2 {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 600;
             color: #e0e0e0;
             margin: 48px 0 12px;
@@ -127,7 +127,7 @@
         }
 
         .steps li {
-            font-size: 14px;
+            font-size: 16px;
             line-height: 1.75;
             color: #909098;
             padding-left: 28px;
@@ -163,7 +163,7 @@
             margin-top: 32px;
             padding: 12px 32px;
             font-family: var(--font);
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             color: #000;
             background: #fff;
@@ -186,7 +186,7 @@
         }
 
         .ideas li {
-            font-size: 14px;
+            font-size: 16px;
             line-height: 2;
             color: #909098;
         }
@@ -278,20 +278,20 @@
 
         .prize-col .p-hrs {
             font-family: var(--mono);
-            font-size: 14px;
+            font-size: 15px;
             color: #555;
             margin-top: 12px;
         }
 
         .prize-col .p-name {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 600;
             color: #d0d0d8;
             margin-top: 4px;
         }
 
         .prize-col .p-desc {
-            font-size: 15px;
+            font-size: 16px;
             line-height: 1.6;
             color: #707078;
             margin-top: 6px;
@@ -313,6 +313,57 @@
             0%   { transform: translateY(0); }
             50%  { transform: translateY(-10px); }
             100% { transform: translateY(0); }
+        }
+
+        .prize-float {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.55;
+        }
+
+        .prize-float-patch {
+            width: 100px;
+            left: -130px;
+            top: 80px;
+            animation: patch-bob 4.2s ease-in-out infinite;
+        }
+
+        .prize-float-moonmap {
+            width: 110px;
+            left: -180px;
+            top: 220px;
+            border-radius: 6px;
+            animation: moonmap-bob 5s ease-in-out infinite;
+        }
+
+        .prize-float-telescope {
+            width: 120px;
+            right: -140px;
+            top: 180px;
+            animation: telescope-bob 4.8s ease-in-out infinite;
+        }
+
+        @keyframes patch-bob {
+            0%   { transform: translateY(0) rotate(-8deg); }
+            50%  { transform: translateY(-10px) rotate(-5deg); }
+            100% { transform: translateY(0) rotate(-8deg); }
+        }
+
+        @keyframes moonmap-bob {
+            0%   { transform: translateY(0) rotate(10deg); }
+            50%  { transform: translateY(-9px) rotate(13deg); }
+            100% { transform: translateY(0) rotate(10deg); }
+        }
+
+        @keyframes telescope-bob {
+            0%   { transform: translateY(0) rotate(6deg); }
+            50%  { transform: translateY(-10px) rotate(9deg); }
+            100% { transform: translateY(0) rotate(6deg); }
+        }
+
+        @media (max-width: 960px) {
+            .prize-float { display: none; }
         }
 
         @media (max-width: 520px) {
@@ -436,6 +487,9 @@
         <p>We'll ship you some cool space swag for building your sim, based on the number of hours of <strong>quality work</strong> you spend developing it.</p>
         <div class="prizes-visual">
             <img class="orpheus-rocket" src="assets/images/Orpheus Rocket.png" alt="Orpheus Rocket">
+            <img class="prize-float prize-float-patch" src="assets/images/artemis patch.webp" alt="Artemis II Patch">
+            <img class="prize-float prize-float-moonmap" src="assets/images/moonmap.jpg" alt="Moon Map">
+            <img class="prize-float prize-float-telescope" src="assets/images/telecope kit.png" alt="Telescope Kit">
             <div class="prizes-row">
                 <div class="prize-col tier-1">
                     <img class="planet-img" src="assets/images/Moon.png" alt="Moon">
@@ -497,7 +551,7 @@
 
     </main>
 
-    <footer style="position:relative;z-index:1;text-align:center;padding:0 20px 40px;font-family:var(--font);font-size:13px;color:#444;">
+    <footer style="position:relative;z-index:1;text-align:center;padding:0 20px 40px;font-family:var(--font);font-size:14px;color:#444;">
         made with ❤️ for Hack Club, by Elliott Preston
     </footer>
 
