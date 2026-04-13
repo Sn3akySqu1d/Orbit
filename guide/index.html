@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide — ORBIT</title>
+    <meta name="description" content="How to build a space sim and submit it to the ORBIT galaxy.">
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/stylesheet.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: var(--font);
+            color: #fff;
+        }
+
+        .guide {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 96px 28px 80px;
+        }
+
+        .guide h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 8px;
+        }
+
+        .guide .subtitle {
+            font-size: 15px;
+            color: #888;
+            margin: 0 0 48px;
+        }
+
+        .guide h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin: 48px 0 12px;
+        }
+
+        .guide h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .guide p {
+            font-size: 15px;
+            line-height: 1.75;
+            color: #909098;
+            margin: 0 0 12px;
+        }
+
+        .guide p strong {
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .guide a {
+            color: #8ab4f0;
+        }
+
+        .guide a:hover {
+            color: #c0d8ff;
+        }
+
+        .guide ul, .guide ol {
+            padding-left: 20px;
+            margin: 0 0 16px;
+        }
+
+        .guide li {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #909098;
+            margin-bottom: 4px;
+        }
+
+        .guide li strong {
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .guide code {
+            font-family: var(--mono);
+            font-size: 13px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 3px;
+            padding: 2px 6px;
+            color: #ccc;
+        }
+
+        .guide pre {
+            background: #0a0a0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 4px;
+            padding: 16px 20px;
+            margin: 0 0 16px;
+            overflow-x: auto;
+        }
+
+        .guide pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #a0a0a8;
+        }
+
+        .note {
+            border-left: 2px solid #333;
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #808088;
+            line-height: 1.7;
+        }
+
+        .note strong {
+            color: #bbb;
+        }
+
+        .faq-q {
+            font-size: 15px;
+            font-weight: 600;
+            color: #d0d0d8;
+            margin: 24px 0 4px;
+        }
+
+        .faq-q:first-of-type {
+            margin-top: 12px;
+        }
+
+        .faq-a {
+            font-size: 14px;
+            line-height: 1.75;
+            color: #808088;
+            margin: 0 0 0;
+        }
+
+        .sep {
+            border: none;
+            border-top: 1px solid #181818;
+            margin: 48px 0;
+        }
+
+        #bg-stars {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            display: block;
+        }
+
+        .guide {
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-galaxy-btn {
+            padding: 10px 24px;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+            background: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .guide-galaxy-btn:hover,
+        .guide-galaxy-btn:hover {
+            background: #e0e0e0;
+            color: #000;
+        }
+
+        .guide a.guide-galaxy-btn {
+            color: #000;
+        }
+
+        @media (max-width: 520px) {
+            .guide { padding: 80px 20px 64px; }
+            .guide h1 { font-size: 26px; }
+            .guide h2 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-stars"></canvas>
+
+    <nav class="galaxy-nav">
+        <a href="../" class="nav-wordmark">ORBIT</a>
+        <div class="nav-links">
+            <a href="../galaxy/">Galaxy</a>
+            <a href="./">Guide</a>
+        </div>
+    </nav>
+
+    <main class="guide">
+
+        <h1>Guide</h1>
+        <p class="subtitle">.</p>
+
+        <h2>What counts as a sim?</h2>
+        <p>To be defined as a sim, your project needs to be:</p>
+        <ul>
+            <li><strong>Interactive</strong> - users need to be able to change starting conditions or affect the sim while it runs. This could be for example, clicking to add planets, dragging to aim a rocket, tweaking a slider to change gravity.</li>
+            <li><strong>Visual</strong> -  something needs to move on screen. It can be 2D, 3D, pixel art, realistic as long as there's a visual representation of the simulation.</li>
+            <li><strong>Space-themed</strong> - planets, stars, rockets, black holes, galaxies, orbits, asteroids, nebulae. Your sim needs to be space-related in some way.</li>
+            <li><strong>Runs in the browser</strong> - no installs! A visitor should be able to open your URL and check out what you've built straight away.</li>
+        </ul>
+        <p>Your sim doesn't need to be super complicated or impressive.</p>
+
+        <p><strong>Things that don't count:</strong> static pages, slideshows, quizzes, chatbots, things that aren't space related. If nothing moves and responds to input, it's not a sim.</p>
+
+        <div class="note">
+            <strong>Optional:</strong> add a button or link somewhere in your sim that points back to the <a href="../galaxy/">ORBIT galaxy</a>.
+        </div>
+
+        <div class="note">
+            <strong>Hour Tracking:</strong> We use <a href="https://hackatime.hackclub.com/" target="_blank" rel="noopener">Hackatime</a> to track how long you spend coding. Number of hours of <strong>quality work</strong> determine the prizes you get!
+        </div>
+
+        <div style="text-align:center;margin:32px 0 0;">
+            <a href="../galaxy/" class="guide-galaxy-btn">Explore the Galaxy</a>
+        </div>
+
+        <h2>Recommended tools</h2>
+        <ul>
+            <li><strong><a href="https://p5js.org/" target="_blank" rel="noopener">p5.js</a></strong> - a beginner friendly js library.</li>
+            <li><strong><a href="https://threejs.org/" target="_blank" rel="noopener">Three.js</a></strong> - for 3D. Has a steep learning curve, but can produce really beautiful sims.</li>
+        </ul>
+        <p>You can use whatever you want to make your sim! These are just [text]</p>
+
+        <hr class="sep">
+
+        <h2>Starter tutorial</h2>
+        <p>Guides you through how to make a basic sim that gets a planet to orbit your cursor. This takes about an hour.</p>
+
+        <p><strong>1. Set up your files</strong></p>
+        <p>Create a folder with two files:</p>
+        <pre><code>index.html <br> script.js</code></pre>
+
+        <p>In <code>index.html</code>:</p>
+        <pre><code data-src="snippets/index.html"></code></pre>
+        <p>This just loads p5.js, (the drawing library) and your js file.</p>
+
+        <p><strong>2. Set up the canvas</strong></p>
+        <p>In <code>sketch.js</code>, start with the variables and setup:</p>
+        <pre><code data-src="snippets/sketch.js" data-lines="1-9"></code></pre>
+        <ul>
+            <li><code>x, y</code> - the planet's current coordinates. These will update throughout the sim.</li>
+            <li><code>vx, vy</code> - the planet's current velocity in each direction. We'll give it a small sideways push to start.</li>
+            <li><code>createCanvas</code> - makes a canvas the size of the window that our js can draw directly onto for our sim.</li>
+        </ul>
+
+        <p><strong>3. Add gravity</strong></p>
+        <p>Now the <code>draw()</code> function, which will run once per frame:</p>
+        <pre><code data-src="snippets/sketch.js" data-lines="11-21"></code></pre>
+        <ul>
+            <li><code>dx, dy</code> - the horizontal and vertical distance from the planet to your mouse.</li>
+            <li><code>dist</code> - the actual direct distance between them, worked out using the pythagorean theorem. We clamp it to at least 20 so things don't explode when the planet gets too close.</li>
+            <li><code>force</code> - The strength of the cursor's gravity is calculated using the <code>/ (dist * dist)</code> is the inverse-square law - gravity gets weaker the further away you are, like in real life.</li>
+            <li>We add the force to the velocity, pulling the planet towards the mouse each frame.</li>
+        </ul>
+
+        <p><strong>4. Damping (optional)</strong></p>
+        <pre><code data-src="snippets/sketch.js" data-lines="23-27"></code></pre>
+        <ul>
+            <li><code>*= 0.99</code> - This is multiplied with the velocity every frame, causing the planet to slow down very slightly each frame, giving it a friction-y feel</li>
+            <li><code>x += vx</code> - updates the position of the planet according to the velocity we computed</li>
+        </ul>
+
+        <p><strong>5. Draw everything</strong></p>
+        <pre><code data-src="snippets/sketch.js" data-lines="29-36"></code></pre>
+        <ul>
+            <li><code>noStroke()</code> - no outline on the shapes.</li>
+            <li><code>fill(100, 160, 255)</code> - a blue colour for the planet. The colour is defined by RGB, red, green and blue where each value is 0-255.</li>
+            <li><code>ellipse(x, y, 24, 24)</code> - draws a circle at the planet's position, 24 pixels wide and 24 pixels tall. If the two numbers are different we would get a stretched circle (an ellipse), which is why this function is called ellipse</li>
+            <li>The second ellipse draws a small yellow dot at your cursor to represent a star</li>
+        </ul>
+
+        <p>Open <code>index.html</code> in your browser. You should see a blue planet orbiting your cursor!</p>
+
+        <p><strong>6. Make it yours!</strong></p>
+        <p>[suggestions]. Sims that match the tutorial project won't be accepted! It needs to be unique in some way.</p>
+
+        <hr class="sep">
+
+        <h2>Deployment</h2>
+        <p>Your sim needs a public URL so anyone can open it. The easiest way is GitHub Pages, although it won't work if you have server-side code (PHP, Python, etc.).</p>
+
+        <p><strong>If you need a new repo:</strong></p>
+        <ol>
+            <li>Click the <strong>+</strong> in the top-right of GitHub and select <strong>New repository</strong></li>
+            <li>Name it whatever you want</li>
+            <li>Make sure the visibility is set to <strong>Public</strong></li>
+            <li>Click <strong>Create repository</strong> and upload your code to it</li>
+        </ol>
+
+        <p><strong>Enable GitHub Pages:</strong></p>
+        <ol>
+            <li>In your repo, go to <strong>Settings</strong></li>
+            <li>In the sidebar under "Code and automation", click <strong>Pages</strong></li>
+            <li>Under "Build and deployment", set the source to <strong>Deploy from a branch</strong></li>
+            <li>Select <strong>main</strong> and <strong>/ (root)</strong>, then click <strong>Save</strong></li>
+            <li>Wait a few minuites, then go to <code>yourusername.github.io/repo-name</code> to see your site!</li>
+        </ol>
+
+        <div class="note">
+            <strong>Tip:</strong> Make sure your main html file is called <code>index.html</code> and is in the root (outside of any folders) of the repo. GitHub Pages looks for this file there.
+        </div>
+
+        <p>Other hosting options work too, examples include Vercel, Netlify and Cloudflare Pages.</p>
+
+        <hr class="sep">
+
+        <h2>Submission</h2>
+        <p>When your sim is live and you're ready to submit:</p>
+        <ol>
+            <li>Fork the <a href="https://github.com/" target="_blank" rel="noopener">ORBIT repo</a></li>
+            <li>Open <code>projects.json</code></li>
+            <li>Add your project to the array:</li>
+        </ol>
+        <pre><code data-src="snippets/submission.json"></code></pre>
+
+        <p><strong>Field reference:</strong></p>
+        <ul>
+            <li><strong>title, author, url, repo</strong> - Add your project details! you can put your name or a username for 'author'.</li>
+            <li><strong>description</strong> - a short sentence shown in the project popup.</li>
+            <li><strong>country</strong> - your country as a 2-letter ISO code (<code>US</code>, <code>GB</code>, <code>UA</code>). Shows a flag in the popup. (optional).</li>
+            <li><strong>age</strong> - your age. Shows in the popup below the title. (optional).</li>
+            <li><strong>image</strong> - a screenshot of your sim. Accepts a URL (see below).</li>
+        </ul>
+
+        <p><strong>Adding a screenshot:</strong></p>
+        <p>There are a couple of easy ways to get a hosted image URL:</p>
+        <ul>
+            <li><strong>Hack Club Slack:</strong> Paste your image in the <strong>#cdn</strong> channel on the Hack Club Slack and you'll get a CDN URL back</li>
+            <li><strong>GitHub:</strong> If your'e not in the hack club slack you can open a GitHub issue on your repo, drop your screenshot into the comment box, and GitHub will give you a URL like <code>https://user-images.githubusercontent.com/...</code></li>
+        </ul>
+
+        <ol start="4">
+            <li>Open a pull request against <code>main</code></li>
+            <li>We'll review it and merge it into the galaxy!</li>
+        </ol>
+
+        <hr class="sep">
+
+        <h2>Resources</h2>
+        <ul>
+            <li><a href="https://p5js.org/learn/" target="_blank" rel="noopener">p5.js tutorials</a> - A good place to start if you're new</li>
+            <li><a href="https://threejs.org/manual/" target="_blank" rel="noopener">Three.js manual</a> - if you want to make a 3D sim</li>
+            <li><a href="https://api.nasa.gov/" target="_blank" rel="noopener">NASA Open APIs</a> - real space data and images</li>
+            <li><a href="https://images.nasa.gov/" target="_blank" rel="noopener">NASA Image Library</a> - free space textures and images</li>
+            <li><a href="https://en.wikipedia.org/wiki/Orbital_mechanics" target="_blank" rel="noopener">Orbital mechanics basics</a> - [text]</li>
+        </ul>
+
+        <hr class="sep">
+
+        <h2>FAQ</h2>
+
+        <p class="faq-q"><strong>Am I eligible?</strong></p>
+        <p class="faq-a">If you're a teenager aged 13-18 (inclusive), yes!</p>
+
+        <p class="faq-q"><strong>This seems too good to be true, is Hack Club legit?</strong></p>
+        <p class="faq-a">Yes! Hack Club is a legitimate 501(c)(3) nonprofit that has been supporting teenage coders since 2014. They've run dozens of You Ship, We Ship programmes like <a href="https://sprig.hackclub.com/" target="_blank" rel="noopener">Sprig</a>, <a href="https://hackclub.com/onboard/" target="_blank" rel="noopener">OnBoard</a>, and <a href="https://blot.hackclub.com/" target="_blank" rel="noopener">Blot</a>, shipping thousands of prizes to teenagers worldwide. ORBIT is one of these programmes.</p>
+
+        <p class="faq-q"><strong>Is it free to participate?</strong></p>
+        <p class="faq-a">Yes, completely free. You build something, we ship you prizes..</p>
+
+        <p class="faq-q"><strong>Can I use a game engine like Unity or Godot?</strong></p>
+        <p class="faq-a">Yes, as long as the final thing runs in a browser at a public URL. Godot exports to web. Unity's WebGL export can work too.</p>
+
+        <p class="faq-q"><strong>Can I use this project for another YSWS programme too?</strong></p>
+        <p class="faq-a">No, you can't double-dip. Hours and projects submitted to ORBIT can't also be claimed for another programme.</p>
+
+        <p class="faq-q"><strong>Does my project need to be open source?</strong></p>
+        <p class="faq-a">Yes, your code needs a public GitHub repo.</p>
+
+        <p class="faq-q"><strong>What if my sim isn't very polished?</strong></p>
+        <p class="faq-a">Ship it anyway. The galaxy is full of experiments, it doesn't need to be impressive.</p>
+
+        <p class="faq-q"><strong>I'm stuck and nothing works, how can I get help?</strong></p>
+        <p class="faq-a">Post in the <strong>#orbit</strong> channel on the Hack Club Slack. People there have seen every bug. They'll help.</p>
+
+    </main>
+
+    <script src="../js/stars-bg.js"></script>
+    <script>
+    document.querySelectorAll('code[data-src]').forEach(async el => {
+        try {
+            const res = await fetch(el.dataset.src);
+            const text = await res.text();
+            const lines = el.dataset.lines;
+            let output = text;
+            if (lines) {
+                const [start, end] = lines.split('-').map(Number);
+                output = text.split('\n').slice(start - 1, end).join('\n');
+            }
+            el.textContent = output;
+        } catch (e) {
+            el.textContent = '// Failed to load snippet';
+        }
+    });
+    </script>
+</body>
+</html>

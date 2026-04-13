@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORBIT</title>
+    <meta name="description" content="">
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: var(--font);
+            color: #fff;
+        }
+
+        #bg-stars {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            display: block;
+        }
+
+        .home-wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 120px 28px 80px;
+        }
+
+        .home-title {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: #fff;
+            line-height: 1;
+            margin: 0 0 20px;
+            text-align: center;
+        }
+
+        .home-tagline {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #b0b0b8;
+            margin: 0 0 32px;
+            text-align: center;
+        }
+
+        .home-cta {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 48px;
+        }
+
+        .btn-main {
+            padding: 10px 24px;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+            background: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .btn-main:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-second {
+            padding: 10px 24px;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 500;
+            color: #ccc;
+            background: none;
+            border: 1px solid #333;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .btn-second:hover {
+            border-color: #666;
+            color: #fff;
+        }
+
+        .home-wrap p {
+            font-size: 15px;
+            line-height: 1.75;
+            color: #909098;
+            margin: 0 0 16px;
+            text-align: center;
+        }
+
+        .home-wrap p strong {
+            color: #d0d0d8;
+            font-weight: 500;
+        }
+
+        .home-wrap h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin: 48px 0 12px;
+            text-align: center;
+        }
+
+        .steps {
+            list-style: none;
+            padding: 0;
+            margin: 16px auto 0;
+            max-width: 440px;
+            counter-reset: step;
+        }
+
+        .steps li {
+            font-size: 14px;
+            line-height: 1.75;
+            color: #909098;
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 600;
+            color: #555;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border: 1px solid #333;
+            border-radius: 50%;
+            top: 2px;
+        }
+
+        .steps li strong {
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .btn-start {
+            display: inline-block;
+            margin-top: 32px;
+            padding: 12px 32px;
+            font-family: var(--font);
+            font-size: 15px;
+            font-weight: 600;
+            color: #000;
+            background: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .btn-start:hover {
+            background: #e0e0e0;
+        }
+
+        .ideas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px 20px;
+        }
+
+        .ideas li {
+            font-size: 14px;
+            line-height: 2;
+            color: #909098;
+        }
+
+        .ideas li::before {
+            content: "• ";
+            color: #444;
+        }
+
+        .examples {
+            display: flex;
+            gap: 16px;
+            margin: 20px 0 0;
+            justify-content: center;
+        }
+
+        .example-link {
+            display: block;
+            width: 180px;
+            text-decoration: none;
+        }
+
+        .example-link img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #222;
+            background: #111;
+            display: block;
+        }
+
+        .example-link:hover img {
+            border-color: #444;
+        }
+
+        .example-label {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 520px) {
+            .examples { flex-direction: column; align-items: center; }
+        }
+
+        .prizes-visual {
+            margin: 16px auto 28px;
+            max-width: 820px;
+            position: relative;
+            padding-top: 20px;
+        }
+
+        .prizes-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .prize-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prize-col.tier-1 { padding-top: 200px; }
+        .prize-col.tier-2 { padding-top: 100px; }
+        .prize-col.tier-3 { padding-top: 0; }
+
+        .prize-col .planet-img {
+            object-fit: contain;
+            animation: planet-bob 3.6s ease-in-out infinite;
+        }
+
+        .prize-col.tier-1 .planet-img { width: 130px; height: 130px; animation-delay: 0s; }
+        .prize-col.tier-2 .planet-img { width: 145px; height: 145px; animation-delay: 0.6s; }
+        .prize-col.tier-3 .planet-img { width: 160px; height: 160px; animation-delay: 1.2s; }
+
+        @keyframes planet-bob {
+            0%   { transform: translateY(0); }
+            50%  { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+
+        .prize-col .p-hrs {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: #555;
+            margin-top: 12px;
+        }
+
+        .prize-col .p-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #d0d0d8;
+            margin-top: 4px;
+        }
+
+        .prize-col .p-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #707078;
+            margin-top: 6px;
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .orpheus-rocket {
+            position: absolute;
+            width: 320px;
+            top: 120px;
+            left: 0;
+            z-index: 2;
+            pointer-events: none;
+            animation: rocket-bob 4s ease-in-out infinite;
+        }
+
+        @keyframes rocket-bob {
+            0%   { transform: translateY(0); }
+            50%  { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        @media (max-width: 520px) {
+            .prizes-visual { padding-top: 100px; }
+            .prizes-row { flex-direction: column; align-items: center; gap: 32px; }
+            .prize-col.tier-1, .prize-col.tier-2, .prize-col.tier-3 { padding-top: 0; }
+            .prize-col .planet-img, .prize-col.tier-2 .planet-img { width: 80px; height: 80px; }
+            .prize-col.tier-3 .planet-img { width: 100px; height: 100px; }
+            .orpheus-rocket { width: 160px; top: 20px; left: 50%; transform: translateX(-50%); }
+        }
+
+        .hc-flag {
+            position: absolute;
+            top: 84px;
+            left: 10px;
+            border: 0;
+            width: 180px;
+            z-index: 50;
+            animation: hc-sway 6s ease-in-out infinite;
+            transform-origin: top left;
+        }
+
+        @keyframes hc-sway {
+            0%   { transform: rotate(0deg); }
+            50%  { transform: rotate(4deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .gh-float {
+            position: absolute;
+            top: 140px;
+            right: 64px;
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            z-index: 50;
+            animation: gh-bob 3.6s ease-in-out infinite;
+        }
+
+        .gh-float:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #444;
+        }
+
+        .gh-float svg {
+            width: 34px;
+            height: 34px;
+            display: block;
+        }
+
+        @keyframes gh-bob {
+            0%   { transform: translateY(0) rotate(-8deg); }
+            50%  { transform: translateY(-10px) rotate(-8deg); }
+            100% { transform: translateY(0) rotate(-8deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hc-flag { width: 140px; }
+            .gh-float { top: 72px; right: 16px; width: 48px; height: 48px; }
+            .gh-float svg { width: 24px; height: 24px; }
+        }
+
+        @media (max-width: 520px) {
+            .home-wrap { padding: 88px 20px 64px; }
+            .home-title { font-size: 48px; }
+            .hc-flag { width: 110px; }
+            .home-cta { flex-direction: column; }
+            .btn-main, .btn-second { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-stars"></canvas>
+
+    <a href="https://hackclub.com/"><img class="hc-flag" src="https://assets.hackclub.com/flag-orpheus-left.svg" alt="Hack Club"></a>
+
+    <a class="gh-float" href="https://github.com/Sn3akySqu1d/Orbit" target="_blank" rel="noopener" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+        </svg>
+    </a>
+
+    <nav class="galaxy-nav">
+        <a href="./" class="nav-wordmark">ORBIT</a>
+        <div class="nav-links">
+            <a href="galaxy/">Galaxy</a>
+            <a href="guide/">Guide</a>
+        </div>
+    </nav>
+
+    <main class="home-wrap">
+
+        <h1 class="home-title">ORBIT</h1>
+        <p class="home-tagline"><strong>Make a space simulation that runs in the browser, get cool space prizes!</strong></p>
+
+        <div class="home-cta">
+            <a href="galaxy/" class="btn-main">Explore the galaxy</a>
+            <a href="guide/" class="btn-second">Read the guide</a>
+        </div>
+
+        <p>ORBIT is a programme for teenagers aged 13-18.</p>
+        <p>ORBIT is a Hack Club You Ship, We Ship (YSWS) programme where you are challenged to build an interactive space simulation/sandbox that runs in the browser. In return, your project will be added as its own star in the <a href="galaxy/">galaxy</a>, and we'll ship you some neat prizes based on the number of hours of quality work you spend developing your project.</p>
+
+        <h2>How it works</h2>
+        <ol class="steps">
+            <li><strong>Build</strong> an interactive space sim that runs in the browser</li>
+            <li><strong>Deploy</strong> it to a public URL (GitHub Pages, Vercel, etc.)</li>
+            <li><strong>Track</strong> your hours with <a href="https://hackatime.hackclub.com/" target="_blank" rel="noopener">Hackatime</a></li>
+            <li><strong>Submit</strong> a PR to add your project to the galaxy</li>
+            <li><strong>Get</strong> awesome prizes once your project is approved!</li>
+        </ol>
+
+        <h2>The Prizes</h2>
+        <p>We'll ship you some cool space swag for building your sim, based on the number of hours of <strong>quality work</strong> you spend developing it.</p>
+        <div class="prizes-visual">
+            <img class="orpheus-rocket" src="assets/images/Orpheus Rocket.png" alt="Orpheus Rocket">
+            <div class="prizes-row">
+                <div class="prize-col tier-1">
+                    <img class="planet-img" src="assets/images/Moon.png" alt="Moon">
+                    <span class="p-hrs">5 hrs</span>
+                    <span class="p-name">Moon</span>
+                    <div class="p-desc">Stickers and a 3d-printed keychain!</div>
+                </div>
+
+                <div class="prize-col tier-2">
+                    <img class="planet-img" src="assets/images/Mars.png" alt="Mars">
+                    <span class="p-hrs">10 hrs</span>
+                    <span class="p-name">Mars</span>
+                    <div class="p-desc">Space plushie or a glow-in-the-dark star map poster</div>
+                </div>
+
+                <div class="prize-col tier-3">
+                    <img class="planet-img" src="assets/images/Saturn.png" alt="Saturn">
+                    <span class="p-hrs">15+ hrs</span>
+                    <span class="p-name">Saturn</span>
+                    <div class="p-desc">Everything from Mars, plus a signed space book and a grant to buy a telescope accessory kit</div>
+                </div>
+            </div>
+        </div>
+
+        <h2>What counts as a sim?</h2>
+        <p>A sim is a model that emulates something, whether this should be accurate to real-life or not is up to you! Your project needs to be <strong>interactive</strong> so people can change the starting conditions or affect the simulation in some way. It also needs to be <strong>visual</strong>, <strong>space-themed</strong>, and <strong>run in the browser</strong> with no downloads. Check out the <a href="guide/">guide</a> for more details.</p>
+
+        <h2>Ideas</h2>
+        <ul class="ideas">
+            <li>Gravity sandbox</li>
+            <li>Procedural planet generator</li>
+            <li>Black hole visualiser</li>
+            <li>Three body problem</li>
+            <li>Rocket launch sim</li>
+            <li>N-body simulator</li>
+        </ul>
+
+        <div class="examples">
+            <a class="example-link" href="https://gravity-sandbox.netlify.app/" target="_blank" rel="noopener">
+                <img src="assets/images/gravity.png" alt="Gravity Sandbox">
+                <div class="example-label">Gravity Sandbox</div>
+            </a>
+            <a class="example-link" href="https://gravitysimulator.org/spaceflight/operational-spacecraft-in-orbit-around-mars" target="_blank" rel="noopener">
+                <img src="assets/images/marsOrbit.png" alt="Spacecraft in Orbit Around Mars">
+                <div class="example-label">Mars Orbiter</div>
+            </a>
+            <a class="example-link" href="https://evgenii.com/files/2020/08/two_galaxies/" target="_blank" rel="noopener">
+                <img src="assets/images/galaxies.png" alt="Two Galaxies">
+                <div class="example-label">Two Galaxies</div>
+            </a>
+        </div>
+
+        <h2>The galaxy</h2>
+        <p>Every submitted project becomes a star in the <a href="galaxy/">galaxy</a>, which is a sim itself! The galaxy grows as more people ship projects.</p>
+
+        <div style="text-align:center;">
+            <a href="guide/" class="btn-start">Get started</a>
+        </div>
+
+    </main>
+
+    <footer style="position:relative;z-index:1;text-align:center;padding:0 20px 40px;font-family:var(--font);font-size:13px;color:#444;">
+        made with ❤️ for Hack Club, by Elliott Preston
+    </footer>
+
+    <script src="js/stars-bg.js"></script>
+</body>
+</html>

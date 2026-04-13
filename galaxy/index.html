@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy</title>
+    <meta name="description" content="The galaxy of ships!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/stylesheet.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="galaxy-nav">
+        <a href="../" class="nav-wordmark">ORBIT</a>
+        <div class="nav-links">
+            <a href="../">Home</a>
+            <a href="../guide/">Guide</a>
+        </div>
+    </nav>
+
+    <canvas id="galaxy"></canvas>
+    <div class="star-tooltip" id="tooltip"></div>
+
+    <div class="galaxy-popup-dim" id="popup-dim">
+        <div class="galaxy-popup" id="popup">
+            <button class="galaxy-popup-close" id="popup-close">
+                <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="popup-image-container">
+                <img class="popup-image" id="popup-image" alt="A screenshot from this project">
+                <div class="popup-image-placeholder" id="popup-image-placeholder">
+                    <span>No Image for this project</span>
+                </div>
+            </div>
+            <div class="popup-main">
+                <div class="popup-head">
+                    <div class="popup-title-row">
+                        <h3 id="popup-title"></h3>
+                        <img class="popup-flag" id="popup-flag" alt="" />
+                    </div>
+                    <div class="popup-meta">
+                        <span class="popup-user-name" id="popup-user"></span>
+                        <span class="popup-age" id="popup-age"></span>
+                    </div>
+                </div>
+                <hr class="popup-divider">
+                <p class="popup-text" id="popup-text"></p>
+                <div class="popup-buttons">
+                    <a class="popup-button popup-button-main" id="popup-visit" href="#" target="_blank" rel="noopener">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        Travel
+                    </a>
+                    <a class="popup-button popup-button-secondary" id="popup-code" href="#" target="_blank" rel="noopener">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/stars-bg.js"></script>
+    <script src="../js/galaxy.js"></script>
+</body>
+</html>
